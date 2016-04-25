@@ -1,23 +1,62 @@
 ---
 layout: default
 ---
+<div class="row">
+  <h2> Introduction </h2>
 
-<div class="home">
+  <p>
+  The concept of Open Data is part of a growing global movement to make
+  public information more accessible.  Providing information to the public
+  through Open Data programs are intended to lead to more accessible,
+  accountable and transparent government.
 
-  <h1 class="page-heading">Posts</h1>
+  </p>
 
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+   <p>
+   Toronto Public Library has released datasets on this page under <a
+   href="http://www.torontopubliclibrary.ca/terms-of-use/library-policies/open-data.jsp">the
+   Library's Open Data policy</a>.  Under this policy, Library data is made
+   available license free and free of charge.
 
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
+  </p>
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+    <p>
+    Members of the public may request the release of additional data sets.
+    Staff will assess requests based on the criteria in the policy of a)
+    public demand, b) value to the library sector including academia and c)
+    resources required to extract and format data.  A request can be made
+    using our <a href="https://www.torontopubliclibrary.ca/contact/">Contact
+    Us page</a>.
 
-</div>
+    </p>
+
+    <h2> Library Data </h2>
+
+<dl class="def-list-library">
+  <dt>Z39.50 is available:</dt>
+  <dd>
+    <ul>
+      <li>host: symphony.torontopubliclibrary.ca</li>
+      <li>port: 2200</li>
+      <li>database name: unicorn</li>
+      <li>search map name: unicorn_bth</li>
+      <li>unicode server: yes</li>
+    </ul>
+    <p><a href="https://en.wikipedia.org/wiki/Z39.50">What is Z39.50?</a></p>
+  </dd>
+
+  {% for dataset in site.datasets %}
+    <dt><strong>{{ dataset.title }}</strong></dt>
+    <dd>
+      {{ dataset.notes | markdownify }}
+      <ul>
+        {% for resource in dataset.resources %}
+          <li><a href="{{ resource.url }}">{{ resource.name }}</a> <span class="data-type">({{ resource.format }})</span></li>
+        {% endfor %}
+      </ul>
+    </dd>
+  {% endfor %}
+
+</dl>
+
+</div><!-- row -->
